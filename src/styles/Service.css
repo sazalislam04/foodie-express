@@ -1,0 +1,10 @@
+.service figure img {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+.service figure:hover img {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
