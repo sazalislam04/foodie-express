@@ -1,13 +1,26 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 import { Link } from "react-router-dom";
+
 import "../../styles/Service.css";
 const Service = ({ service }) => {
   const { _id, img, name, rating, price, description } = service;
   return (
     <div className="card w-96 bg-base-100 shadow-xl rounded-md service">
       <figure>
-        <img src={img} className="h-72 p-5 shadow-xl rounded" alt="Shoes" />
+        <PhotoProvider
+          speed={() => 800}
+          easing={(type) =>
+            type === 2
+              ? "cubic-bezier(0.36, 0, 0.66, -0.56)"
+              : "cubic-bezier(0.34, 1.56, 0.64, 1)"
+          }
+        >
+          <PhotoView src={img}>
+            <img src={img} className="h-72 p-5 shadow-xl rounded" alt="Shoes" />
+          </PhotoView>
+        </PhotoProvider>
       </figure>
       <div className="card-body">
         <div className="flex items-center">

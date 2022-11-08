@@ -17,10 +17,10 @@ const Header = () => {
       {user?.email && (
         <>
           <li>
-            <Link>My reviews</Link>
+            <Link to="/myreview">My reviews</Link>
           </li>
           <li>
-            <Link>Add Service</Link>
+            <Link to="/addservice">Add Service</Link>
           </li>
         </>
       )}
@@ -62,13 +62,13 @@ const Header = () => {
             {navMenu}
           </ul>
         </div>
-        <Link className="btn btn-ghost normal-case text-xl">daisyUI</Link>
+        <Link className="text-yellow-500 font-semibold text-2xl">Foodie</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{navMenu}</ul>
       </div>
       <div className="navbar-end">
-        {user ? (
+        {user?.email ? (
           <>
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">

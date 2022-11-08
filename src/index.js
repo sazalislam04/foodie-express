@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "react-photo-view/dist/react-photo-view.css";
 import "swiper/css/bundle";
 import App from "./App";
 import AuthProvider from "./contexts/AuthProvider/AuthProvider";

@@ -2,6 +2,7 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
 import delivery from "../../assets/img/Delivery.png";
+import Review from "./Review/Review";
 
 const ServiceDetails = () => {
   const { _id, img, name, rating, price, description } = useLoaderData();
@@ -55,6 +56,9 @@ const ServiceDetails = () => {
       </div>
       <div>
         <h2 className="text-center text-2xl uppercase heading pt-8">Reviews</h2>
+        <div className="py-10">
+          <Review />
+        </div>
       </div>
     </div>
   );
