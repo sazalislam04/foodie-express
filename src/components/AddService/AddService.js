@@ -116,19 +116,17 @@ const AddService = () => {
             <div>
               <select
                 onClick={(e) => setRating(e.target.value)}
-                className="btn"
+                className="btn btn-warning"
                 required
               >
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="2">Rating 2</option>
+                <option value="3">Rating 3</option>
+                <option value="4">Rating 4</option>
+                <option value="5">Rating 5</option>
               </select>
             </div>
             <div className="">
-              <button className="px-20 py-3 rounded-md font-medium text-xl bg-yellow-500">
-                Added
-              </button>
+              <button className="btn btn-warning">Added Services</button>
             </div>
           </form>
         </fieldset>

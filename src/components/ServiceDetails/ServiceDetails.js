@@ -2,10 +2,10 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
 import delivery from "../../assets/img/Delivery.png";
-import Review from "./Review/Review";
+import Review from "../Review/Review";
 
 const ServiceDetails = () => {
-  const { _id, img, name, rating, price, description } = useLoaderData();
+  const { img, name, rating, price, description } = useLoaderData();
 
   return (
     <div className="bg-white">
@@ -55,7 +55,7 @@ const ServiceDetails = () => {
         </div>
       </div>
       <div>
-        <h2 className="text-center text-2xl uppercase heading pt-8">Reviews</h2>
+        <h2 className="text-center text-4xl uppercase heading pt-8">Reviews</h2>
         <div className="py-10">
           <Review />
         </div>
