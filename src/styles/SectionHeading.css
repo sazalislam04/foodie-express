@@ -1,0 +1,23 @@
+.heading {
+  position: relative;
+}
+.heading::before {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 2px;
+  background: #222;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 5px);
+}
+.heading::after {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 2px;
+  background: #ffff00;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 5px);
+}
