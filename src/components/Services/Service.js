@@ -33,9 +33,8 @@ const Service = ({ service }) => {
           </p>
         </div>
         <p className="text-xl font-semibold text-warning">Price: {price}$</p>
-
         <p>
-          {description.length > 100
+          {description?.length > 100
             ? description.slice(0, 100) + "..."
             : description}
         </p>

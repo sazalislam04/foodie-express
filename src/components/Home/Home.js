@@ -8,7 +8,6 @@ import Testimonials from "./Testimonials/Testimonials";
 
 const Home = () => {
   const [services, setServices] = useState([]);
-
   useEffect(() => {
     fetch("http://localhost:5000/home-services")
       .then((res) => res.json())
@@ -27,6 +26,7 @@ const Home = () => {
           <Service key={service._id} service={service} />
         ))}
       </div>
+
       <div className="text-center pb-10">
         <Link to="/services">
           {" "}

@@ -1,16 +1,36 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import toast from "react-hot-toast";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const AddService = () => {
+  const { user } = useContext(AuthContext);
+  const [rating, setRating] = useState(0);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    const name = `${form.fname.value} ${form.lname.value}`;
+    const name = form.serviceName.value;
     const email = form.email.value;
-    const photo = form.photo.value;
-    const address = form.address.value;
-    const message = form.message.value;
+    const img = form.photo.value;
+    const price = form.price.value;
+    const description = form.message.value;
 
-    console.log(name, email, photo, address, message);
+    const addService = { name, email, img, price, description, rating };
+
+    console.log(addService);
+
+    fetch("http://localhost:5000/services", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(addService),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        toast.success("services added success");
+      });
   };
 
   return (
@@ -31,28 +51,18 @@ const AddService = () => {
           >
             <div className="col-span-full sm:col-span-3">
               <label htmlFor="firstname" className="text-sm">
-                First name
+                Service Name
               </label>
               <input
                 id="firstname"
                 type="text"
-                name="fname"
+                name="serviceName"
                 placeholder="First name"
                 className="w-full p-2 rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900"
+                required
               />
             </div>
-            <div className="col-span-full sm:col-span-3">
-              <label htmlFor="lastname" className="text-sm">
-                Last name
-              </label>
-              <input
-                id="lastname"
-                type="text"
-                name="lname"
-                placeholder="Last name"
-                className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 p-2 dark:border-gray-700 dark:text-gray-900"
-              />
-            </div>
+
             <div className="col-span-full sm:col-span-3">
               <label htmlFor="email" className="text-sm">
                 Email
@@ -61,20 +71,21 @@ const AddService = () => {
                 id="email"
                 type="email"
                 name="email"
+                defaultValue={user?.email}
                 placeholder="Email"
                 className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 p-2 dark:border-gray-700 dark:text-gray-900"
               />
             </div>
             <div className="col-span-full">
-              <label htmlFor="address" className="text-sm">
-                Address
+              <label htmlFor="price" className="text-sm">
+                Service Price
               </label>
               <input
-                id="address"
                 type="text"
-                name="address"
-                placeholder="address"
+                name="price"
+                placeholder="price"
                 className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 p-2 dark:border-gray-700 dark:text-gray-900"
+                required
               />
             </div>
             <div className="col-span-full">
@@ -87,18 +98,32 @@ const AddService = () => {
                 name="photo"
                 placeholder="photoUrl"
                 className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 p-2 dark:border-gray-700 dark:text-gray-900"
+                required
               />
             </div>
             <div className="col-span-full">
               <label htmlFor="message" className="text-sm">
-                Your Message
+                Service Description
               </label>
               <textarea
                 id="message"
-                placeholder="message"
+                placeholder="Bio"
                 name="message"
                 className="w-full p-2 rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900"
+                required
               ></textarea>
+            </div>
+            <div>
+              <select
+                onClick={(e) => setRating(e.target.value)}
+                className="btn"
+                required
+              >
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
             </div>
             <div className="">
               <button className="px-20 py-3 rounded-md font-medium text-xl bg-yellow-500">
