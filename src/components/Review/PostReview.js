@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const PostReview = () => {
   const [rating, setRating] = useState(0);
+  const { user } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -56,6 +58,7 @@ const PostReview = () => {
           <input
             type="email"
             name="email"
+            defaultValue={user?.email}
             placeholder="email"
             className="w-full p-3 rounded-xl focus:outline-yellow-400 border border-yellow-200 resize-none text-gray-900"
             required

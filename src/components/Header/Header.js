@@ -8,14 +8,14 @@ const Header = () => {
 
   const navMenu = (
     <>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/services">Services</Link>
-      </li>
       {user?.email && (
         <>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/services">Services</Link>
+          </li>
           <li>
             <Link to="/myreview">My reviews</Link>
           </li>
@@ -62,7 +62,9 @@ const Header = () => {
             {navMenu}
           </ul>
         </div>
-        <Link className="text-yellow-500 font-semibold text-2xl">Foodie</Link>
+        <Link to="/" className="text-yellow-500 font-semibold text-2xl">
+          Foodie
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{navMenu}</ul>
