@@ -1,10 +1,41 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import login from "../../../assets/img/Login.png";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
+  const { userLogin, googleSignin } = useContext(AuthContext);
+  const [error, setError] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    userLogin(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+        toast.success("Login Success");
+        setError("");
+      })
+      .catch((error) => setError(error));
+  };
+
+  const handleGoogleLogin = () => {
+    googleSignin()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => setError(error));
+  };
+
   return (
-    <div className="">
+    <div className="py-16 bg-slate-50">
       <div className="lg:flex mx-auto justify-between items-center container px-6">
         <div>
           <img
@@ -15,11 +46,11 @@ const Login = () => {
           />
         </div>
         <div
-          className="p-8 space-y-3 rounded-xl mx-auto mt-10 mb-10 shadow-xl"
+          className="p-8 space-y-3 rounded-xl mx-auto  shadow-xl"
           data-aos="zoom-in"
         >
           <h1 className="text-2xl font-bold text-center">Login</h1>
-          <form className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-1 text-sm">
               <label htmlFor="email" className="block text-gray-900">
                 Your Email
@@ -45,7 +76,7 @@ const Login = () => {
                 className="w-full px-4 py-3 border border-blue-100 rounded-md focus:outline-none focus:shadow-md focus:bg-blue-50 "
                 required
               />
-              {/* <p className="text-red-500">{error}</p> */}
+              <p className="text-red-500">{error}</p>
             </div>
             <button className="block w-full p-3 text-center rounded-sm text-gray-100 font-semibold bg-yellow-500">
               Login
@@ -62,7 +93,11 @@ const Login = () => {
             <div className="flex-1 h-px sm:w-16 bg-gray-700"></div>
           </div>
           <div className="flex justify-center space-x-4">
-            <button aria-label="Log in with Google" className="p-3 rounded-sm">
+            <button
+              onClick={handleGoogleLogin}
+              aria-label="Log in with Google"
+              className="p-3 rounded-sm"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 32 32"

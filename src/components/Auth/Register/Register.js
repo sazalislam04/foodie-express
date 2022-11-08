@@ -1,10 +1,64 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import register from "../../../assets/img/register.png";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Register = () => {
+  const { createUser, userUpdateProfile, googleSignin } =
+    useContext(AuthContext);
+  const [error, setError] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const photoURL = form.photoURL.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    if (!/(?=.*?[A-Z])/.test(password)) {
+      setError("Password Should be one Capital letter");
+      return;
+    }
+
+    if (password.length < 6) {
+      setError("Password Should be at least Six Character");
+      return;
+    }
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+        setError("");
+        handleUserProfileUpdate(name, photoURL);
+        toast.success("Account Register Success");
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const handleUserProfileUpdate = (name, photoURL) => {
+    const profile = {
+      displayName: name,
+      photoURL: photoURL,
+    };
+    userUpdateProfile(profile)
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
+  const handleGoogleLogin = () => {
+    googleSignin()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => setError(error));
+  };
+
   return (
-    <div className="">
+    <div className=" bg-slate-50 py-16">
       <div className="lg:flex mx-auto justify-between items-center container px-6">
         <div>
           <img
@@ -15,11 +69,37 @@ const Register = () => {
           />
         </div>
         <div
-          className="p-8 space-y-3 rounded-xl mx-auto mt-10 mb-10 shadow-xl"
+          className="p-8 space-y-3 rounded-xl mx-auto shadow-xl"
           data-aos="zoom-in"
         >
           <h1 className="text-2xl font-bold text-center">Register Account</h1>
-          <form className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-1 text-sm">
+              <label htmlFor="name" className="block text-gray-900">
+                Your Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="name"
+                className="w-full px-4 py-3 border border-blue-100 rounded-md focus:outline-none focus:shadow-md focus:bg-blue-50"
+                required
+              />
+            </div>
+            <div className="space-y-1 text-sm">
+              <label htmlFor="photo" className="block text-gray-900">
+                Your Photo
+              </label>
+              <input
+                type="text"
+                name="photoURL"
+                id="photo"
+                placeholder="photo"
+                className="w-full px-4 py-3 border border-blue-100 rounded-md focus:outline-none focus:shadow-md focus:bg-blue-50"
+                required
+              />
+            </div>
             <div className="space-y-1 text-sm">
               <label htmlFor="email" className="block text-gray-900">
                 Your Email
@@ -45,7 +125,7 @@ const Register = () => {
                 className="w-full px-4 py-3 border border-blue-100 rounded-md focus:outline-none focus:shadow-md focus:bg-blue-50 "
                 required
               />
-              {/* <p className="text-red-500">{error}</p> */}
+              <p className="text-red-500">{error}</p>
             </div>
             <button className="block w-full p-3 text-center rounded-sm text-gray-100 font-semibold bg-yellow-500">
               Register
@@ -62,7 +142,11 @@ const Register = () => {
             <div className="flex-1 h-px sm:w-16 bg-gray-700"></div>
           </div>
           <div className="flex justify-center space-x-4">
-            <button aria-label="Log in with Google" className="p-3 rounded-sm">
+            <button
+              onClick={handleGoogleLogin}
+              aria-label="Log in with Google"
+              className="p-3 rounded-sm"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 32 32"
