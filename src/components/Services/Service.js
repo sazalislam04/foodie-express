@@ -1,8 +1,9 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import "../../styles/Service.css";
 const Service = ({ service }) => {
-  const { img, name, rating, price, description } = service;
+  const { _id, img, name, rating, price, description } = service;
   return (
     <div className="card w-96 bg-base-100 shadow-xl rounded-md service">
       <figure>
@@ -26,7 +27,9 @@ const Service = ({ service }) => {
             : description}
         </p>
         <div className="card-actions justify-end">
-          <button className="btn btn-warning">Show Details</button>
+          <Link to={`/service/${_id}`}>
+            <button className="btn btn-warning">Show Details</button>
+          </Link>
         </div>
       </div>
     </div>

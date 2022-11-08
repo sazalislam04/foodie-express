@@ -16,32 +16,32 @@ const Services = () => {
   }, []);
 
   return (
-    <div className="">
-      <div className="lg:flex  items-center justify-center px-8 lg:px-20 bg-gray-100">
+    <div className="bg-white">
+      <div className="lg:flex items-center justify-center px-6 lg:px-20 h-96 bg-gray-100">
         <div className="w-full py-5 lg:py-0 lg:w-1/2">
           <h2 className="text-6xl text-gray-800">Our Services</h2>
           <div className="text-sm breadcrumbs">
             <ul>
               <li>
-                <Link to="/" className="">
+                <Link to="/" className="font-medium">
                   Home
                 </Link>
               </li>
               <li>
-                <Link className="text-yellow-500">Services</Link>
+                <Link className="text-yellow-500 font-medium">Services</Link>
               </li>
             </ul>
           </div>
         </div>
-        <div className="w-1/2 mx-auto">
+        <div className="w-full lg:w-1/2 mx-auto">
           <Lottie
-            className="h-full lg:h-80 w-full"
+            className="h-full lg:h-80  w-full"
             animationData={animation}
             loop={true}
           />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-8 lg:px-20 py-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 py-16 lg:px-20">
         {services.map((service) => (
           <Service key={service._id} service={service} />
         ))}

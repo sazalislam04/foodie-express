@@ -6,7 +6,11 @@ const Features = () => {
   return (
     <div className="mt-20 bg-base-200">
       <div className="flex items-center gap-8 flex-col lg:flex-row">
-        <img src={img} className="h-screen object-cover w-1/2" alt="" />
+        <img
+          src={img}
+          className="h-screen object-cover w-full lg:w-1/2"
+          alt=""
+        />
         <div className="p-10">
           <h1 className="text-5xl font-bold text-yellow-500 tracking-wide">
             sit at Home <br /> We Will Take Care
@@ -39,9 +43,11 @@ const Features = () => {
               <span>100 Couriers</span>
             </div>
           </div>
-          <button className="px-20 py-3 border border-yellow-500 font-semibold hover:bg-yellow-500 transition duration-300 hover:text-white ">
-            Read More
-          </button>
+          <div className="text-center lg:text-left">
+            <button className="px-20 py-3 border border-yellow-500 font-semibold hover:bg-yellow-500 transition duration-300 hover:text-white ">
+              Read More
+            </button>
+          </div>
         </div>
       </div>
     </div>

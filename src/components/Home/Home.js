@@ -22,7 +22,7 @@ const Home = () => {
     <div>
       <Banner />
       <SectionHeading />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-8 lg:px-20 py-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-6 lg:px-20 py-16">
         {services.map((service) => (
           <Service key={service._id} service={service} />
         ))}
