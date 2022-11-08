@@ -11,9 +11,12 @@ const Header = () => {
       </div>
       <div className="flex-none">
         <div className="mr-10">
-          <ul>
+          <ul className="lg:flex gap-6 text-lg">
             <li>
               <Link to="/services">Services</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
             </li>
           </ul>
         </div>
