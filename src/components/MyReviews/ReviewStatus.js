@@ -75,14 +75,11 @@ const ReviewStatus = ({ myRev, handleDelete, handleUpdate }) => {
                 className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3"
               >
                 <div className="col-span-full sm:col-span-3">
-                  <label htmlFor="firstname" className="text-sm">
-                    Name
-                  </label>
+                  <label className="text-sm">Name</label>
                   <input
-                    id="firstname"
                     type="text"
-                    name="serviceName"
-                    placeholder="First name"
+                    name="name"
+                    placeholder="name"
                     className="w-full p-2 rounded-md border focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900"
                     required
                   />

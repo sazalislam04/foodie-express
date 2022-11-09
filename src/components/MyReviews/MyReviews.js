@@ -7,6 +7,7 @@ import ReviewStatus from "./ReviewStatus";
 const MyReviews = () => {
   const { user, userLogOut } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState([]);
+  const [refresh, setRefresh] = useState(false);
   useSetTitle("My Reviews");
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const MyReviews = () => {
       .then((data) => {
         setMyReviews(data);
       });
-  }, [user?.email, userLogOut]);
+  }, [user?.email, userLogOut, refresh]);
 
   const handleDelete = (id) => {
     const proceed = window.confirm(
@@ -49,18 +50,37 @@ const MyReviews = () => {
 
   const handleUpdate = (e, id) => {
     e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const review = form.message.value;
+
+    const updateReview = {
+      name,
+      email,
+      review,
+    };
+
     fetch(`http://localhost:5000/reviews/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(),
+      body: JSON.stringify(updateReview),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data.success) {
+          toast.success(data.message);
+          const rest = myReviews.filter((review) => review._id !== id);
+          const user = myReviews.find((review) => review._id === id);
+          const result = [...rest, user];
+          setMyReviews(result);
+          setRefresh(true);
+        } else {
+          toast.error(data.error);
+        }
       });
-    console.log(id);
   };
 
   return (
@@ -72,7 +92,7 @@ const MyReviews = () => {
       ) : (
         <>
           <div className="overflow-x-auto w-full px-6 bg-slate-50 lg:px-20">
-            {myReviews.map((myRev, index) => (
+            {myReviews.map((myRev) => (
               <ReviewStatus
                 key={myRev._id}
                 myRev={myRev}
