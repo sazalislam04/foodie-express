@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-import avatar from "../../assets/img/avatar.png";
+import avatar from "../../assets/img/avatar-2.png";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
@@ -79,7 +79,11 @@ const Header = () => {
                   {user?.photoURL ? (
                     <img src={user?.photoURL} alt="" />
                   ) : (
-                    <img src={avatar} alt="" />
+                    <img
+                      className="w-16 h-16 object-cover rounded-full border"
+                      src={avatar}
+                      alt=""
+                    />
                   )}
                 </div>
               </label>

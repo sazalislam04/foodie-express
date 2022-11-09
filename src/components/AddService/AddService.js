@@ -17,8 +17,6 @@ const AddService = () => {
 
     const addService = { name, email, img, price, description, rating };
 
-    console.log(addService);
-
     fetch("http://localhost:5000/services", {
       method: "POST",
       headers: {
@@ -28,8 +26,15 @@ const AddService = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        toast.success("services added success");
+        if (data.insertedId) {
+          toast.error("already added service");
+          return;
+        }
+        if (data.acknowledged) {
+          toast.success("services added success");
+        } else {
+          toast.error("service not exists");
+        }
       });
   };
 

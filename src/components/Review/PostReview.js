@@ -46,7 +46,7 @@ const PostReview = ({ handleSubmit }) => {
                   required
                 />
               </div>
-              <div className="col-span-full">
+              {/* <div className="col-span-full">
                 <input
                   type="text"
                   name="photoURL"
@@ -55,7 +55,7 @@ const PostReview = ({ handleSubmit }) => {
                   className="w-full p-3 rounded-xl focus:outline-yellow-400 border border-yellow-200 resize-none text-gray-900"
                   required
                 />
-              </div>
+              </div> */}
               <div className="">
                 <button className="btn btn-warning">Add Review</button>
               </div>
@@ -63,7 +63,7 @@ const PostReview = ({ handleSubmit }) => {
           </div>
         </>
       ) : (
-        <p className="text-center text-xl pt-10">
+        <p className="text-center text-xl pt-10 mb-10">
           Please login to add a review!!{" "}
           <Link to="/login" className="text-yellow-500 hover:underline">
             Login

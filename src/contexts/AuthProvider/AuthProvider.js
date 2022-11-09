@@ -28,6 +28,7 @@ const AuthProvider = ({ children }) => {
 
   const userLogOut = () => {
     setLoading(true);
+    localStorage.removeItem("foodie-token");
     return signOut(auth);
   };
 

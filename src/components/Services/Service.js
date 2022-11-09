@@ -21,7 +21,7 @@ const Service = ({ service }) => {
             <img
               src={img}
               className="md:h-72 lg:p-5 shadow-xl rounded"
-              alt="Shoes"
+              alt="imgNotFound"
             />
           </PhotoView>
         </PhotoProvider>

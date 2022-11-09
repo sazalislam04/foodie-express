@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import PostReview from "./PostReview";
 import ShowReview from "./ShowReview";
 
 const Review = ({ rating, name: serviceName, price }) => {
+  const { user } = useContext(AuthContext);
   const [serviceReview, setServiceReview] = useState([]);
   const [refresh, setRefresh] = useState(false);
 
@@ -17,7 +19,6 @@ const Review = ({ rating, name: serviceName, price }) => {
     const name = form.name.value;
     const email = form.email.value;
     const review = form.review.value;
-    const photoURL = form.photoURL.value;
 
     const reviews = {
       id,
@@ -25,12 +26,12 @@ const Review = ({ rating, name: serviceName, price }) => {
       email,
       review,
       rating,
-      photoURL,
       serviceName,
       price,
+      photoURL: user.photoURL,
     };
 
-    fetch("http://localhost:5000/reviews", {
+    fetch(`http://localhost:5000/reviews?${user?.email}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -68,10 +69,14 @@ const Review = ({ rating, name: serviceName, price }) => {
         <PostReview handleSubmit={handleSubmit} />
       </div>
       {serviceReview.length === 0 ? (
-        <p className="text-center py-16 text-lg">
-          This Service has not reviewed yet! you can wish that can write a
-          review
-        </p>
+        <>
+          {user?.email && (
+            <p className="text-center py-16 text-md">
+              This Service has not reviewed yet! you can wish that can write a
+              review
+            </p>
+          )}
+        </>
       ) : (
         <>
           <div className="py-16 grid grid-cols-1 lg:grid-cols-2">

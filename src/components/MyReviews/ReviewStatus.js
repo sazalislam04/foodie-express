@@ -1,5 +1,6 @@
 import React from "react";
 import { FaTrash } from "react-icons/fa";
+import avatar from "../../assets/img/avatar.png";
 
 const ReviewStatus = ({ myRev, handleDelete, handleUpdate }) => {
   const { _id, review, name, email, serviceName, photoURL, price } = myRev;
@@ -19,7 +20,15 @@ const ReviewStatus = ({ myRev, handleDelete, handleUpdate }) => {
           <div className="flex items-center space-x-3">
             <div className="avatar">
               <div className="mask mask-squircle w-12 h-12">
-                <img src={photoURL} alt="Avatar Tailwind CSS Component" />
+                {photoURL ? (
+                  <img src={photoURL} alt="" />
+                ) : (
+                  <img
+                    className="w-16 h-16 object-cover rounded-full border"
+                    src={avatar}
+                    alt=""
+                  />
+                )}
               </div>
             </div>
             <div>
