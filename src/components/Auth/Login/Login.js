@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { setAuthToken } from "../../../api/auth";
 import login from "../../../assets/img/Login.png";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import useSetTitle from "../../../useSetTitle/useSetTitle";
@@ -26,23 +27,7 @@ const Login = () => {
         form.reset();
         toast.success("Login Success");
         setError("");
-
-        const currentUser = {
-          email: user.email,
-        };
-
-        fetch("http://localhost:5000/jwt", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(currentUser),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            localStorage.setItem("foodie-token", data.token);
-          });
-
+        setAuthToken(user);
         navigate(from, { replace: true });
       })
       .catch((error) => setError(error));
@@ -51,6 +36,8 @@ const Login = () => {
   const handleGoogleLogin = () => {
     googleSignin()
       .then((result) => {
+        const user = result.user;
+        setAuthToken(user);
         navigate(from, { replace: true });
       })
       .catch((error) => setError(error));

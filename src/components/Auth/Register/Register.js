@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { setAuthToken } from "../../../api/auth";
 import register from "../../../assets/img/register.png";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import useSetTitle from "../../../useSetTitle/useSetTitle";
@@ -13,6 +14,7 @@ const Register = () => {
   const from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
   useSetTitle("Register");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -34,11 +36,11 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
         form.reset();
         setError("");
         handleUserProfileUpdate(name, photoURL);
         toast.success("Account Register Success");
+        setAuthToken(user);
         navigate(from, { replace: true });
       })
       .catch((error) => console.log(error));
@@ -56,6 +58,8 @@ const Register = () => {
   const handleGoogleLogin = () => {
     googleSignin()
       .then((result) => {
+        const user = result.user;
+        setAuthToken(user);
         navigate(from, { replace: true });
       })
       .catch((error) => setError(error));

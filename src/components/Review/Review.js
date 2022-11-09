@@ -32,7 +32,7 @@ const Review = ({ rating, name: serviceName, price }) => {
       photoURL: user.photoURL,
     };
 
-    fetch(`http://localhost:5000/reviews?${user?.email}`, {
+    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -5,17 +5,26 @@ import useSetTitle from "../../useSetTitle/useSetTitle";
 import ReviewStatus from "./ReviewStatus";
 
 const MyReviews = () => {
-  const { user } = useContext(AuthContext);
+  const { user, userLogOut } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState([]);
   useSetTitle("My Reviews");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`)
-      .then((res) => res.json())
+    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearar ${localStorage.getItem("foodie-token")}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          return userLogOut();
+        }
+        return res.json();
+      })
       .then((data) => {
         setMyReviews(data);
       });
-  }, [user?.email]);
+  }, [user?.email, userLogOut]);
 
   const handleDelete = (id) => {
     const proceed = window.confirm(
@@ -38,7 +47,19 @@ const MyReviews = () => {
     }
   };
 
-  const handleUpdate = (id) => {
+  const handleUpdate = (e, id) => {
+    e.preventDefault();
+    fetch(`http://localhost:5000/reviews/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
     console.log(id);
   };
 
@@ -51,27 +72,14 @@ const MyReviews = () => {
       ) : (
         <>
           <div className="overflow-x-auto w-full px-6 bg-slate-50 lg:px-20">
-            <table className="table w-full">
-              <thead>
-                <tr>
-                  <th>Delete</th>
-                  <th>Review User</th>
-                  <th>Service Details</th>
-                  <th>My Review</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {myReviews.map((myRev) => (
-                  <ReviewStatus
-                    key={myRev._id}
-                    myRev={myRev}
-                    handleDelete={handleDelete}
-                    handleUpdate={handleUpdate}
-                  />
-                ))}
-              </tbody>
-            </table>
+            {myReviews.map((myRev, index) => (
+              <ReviewStatus
+                key={myRev._id}
+                myRev={myRev}
+                handleDelete={handleDelete}
+                handleUpdate={handleUpdate}
+              />
+            ))}
           </div>
         </>
       )}
