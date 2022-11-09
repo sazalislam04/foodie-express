@@ -1,19 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaStar } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
 import delivery from "../../assets/img/Delivery.png";
 import Review from "../Review/Review";
 
 const ServiceDetails = () => {
-  const [services, setServices] = useState();
-
   const { _id, img, name, rating, price, description } = useLoaderData();
-
-  // useEffect(() => {
-  //   fetch(`http://localhost:5000/services?serviceId=${_id}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setServices(data));
-  // }, [_id]);
 
   return (
     <>
@@ -69,7 +61,7 @@ const ServiceDetails = () => {
       </div>
       <div>
         <Link to={`/review/${_id}`} />
-        <Review rating={rating} />
+        <Review rating={rating} name={name} price={price} />
       </div>
     </>
   );

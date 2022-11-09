@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import avatar from "../../assets/img/avatar.png";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
@@ -75,7 +76,11 @@ const Header = () => {
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
-                  {user?.photoURL && <img src={user?.photoURL} alt="" />}
+                  {user?.photoURL ? (
+                    <img src={user?.photoURL} alt="" />
+                  ) : (
+                    <img src={avatar} alt="" />
+                  )}
                 </div>
               </label>
               <ul

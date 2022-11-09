@@ -51,7 +51,7 @@ const PostReview = ({ handleSubmit }) => {
                   type="text"
                   name="photoURL"
                   defaultValue={user?.photoURL}
-                  placeholder="email"
+                  placeholder="photoUrl"
                   className="w-full p-3 rounded-xl focus:outline-yellow-400 border border-yellow-200 resize-none text-gray-900"
                   required
                 />

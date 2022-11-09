@@ -1,12 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import PostReview from "./PostReview";
 import ShowReview from "./ShowReview";
 
-const Review = ({ rating }) => {
-  const { user } = useContext(AuthContext);
+const Review = ({ rating, name: serviceName, price }) => {
   const [serviceReview, setServiceReview] = useState([]);
   const [refresh, setRefresh] = useState(false);
 
@@ -21,7 +19,16 @@ const Review = ({ rating }) => {
     const review = form.review.value;
     const photoURL = form.photoURL.value;
 
-    const reviews = { id, name, email, review, rating, photoURL };
+    const reviews = {
+      id,
+      name,
+      email,
+      review,
+      rating,
+      photoURL,
+      serviceName,
+      price,
+    };
 
     fetch("http://localhost:5000/reviews", {
       method: "POST",
@@ -54,17 +61,26 @@ const Review = ({ rating }) => {
 
   return (
     <>
-      <div className="text-center pt-20 heading">
+      <div className="text-center pt-16 mb-10 heading">
         <h2 className="text-5xl capitalize">reviews</h2>
       </div>
       <div>
         <PostReview handleSubmit={handleSubmit} />
       </div>
-      <div className="py-16 grid grid-cols-1 lg:grid-cols-2">
-        {serviceReview?.map((item) => (
-          <ShowReview key={item._id} item={item} />
-        ))}
-      </div>
+      {serviceReview.length === 0 ? (
+        <p className="text-center py-16 text-lg">
+          This Service has not reviewed yet! you can wish that can write a
+          review
+        </p>
+      ) : (
+        <>
+          <div className="py-16 grid grid-cols-1 lg:grid-cols-2">
+            {serviceReview?.map((item) => (
+              <ShowReview key={item._id} item={item} />
+            ))}
+          </div>
+        </>
+      )}
     </>
   );
 };

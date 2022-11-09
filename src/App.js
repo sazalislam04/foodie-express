@@ -30,7 +30,14 @@ function App() {
       ) : (
         <>
           <RouterProvider router={router} />
-          <Toaster />
+          <Toaster
+            toastOptions={{
+              style: {
+                background: "#222",
+                color: "#fff",
+              },
+            }}
+          />
         </>
       )}
     </div>
