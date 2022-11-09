@@ -18,7 +18,7 @@ const Services = () => {
 
   return (
     <div className="bg-white">
-      <div className="lg:flex items-center justify-center px-6 lg:px-20 h-96 bg-gray-100">
+      <div className="lg:flex items-center justify-center px-6 lg:px-20 lg:h-96 bg-gray-100">
         <div className="w-full py-5 lg:py-0 lg:w-1/2">
           <h2 className="text-6xl text-gray-800">Our Services</h2>
           <div className="text-sm breadcrumbs">

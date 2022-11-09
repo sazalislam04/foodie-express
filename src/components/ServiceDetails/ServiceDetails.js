@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
 import delivery from "../../assets/img/Delivery.png";
 import Review from "../Review/Review";
 
 const ServiceDetails = () => {
-  const { img, name, rating, price, description } = useLoaderData();
+  const [services, setServices] = useState();
+
+  const { _id, img, name, rating, price, description } = useLoaderData();
+
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/services?serviceId=${_id}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setServices(data));
+  // }, [_id]);
 
   return (
     <>
       <div className="bg-white">
-        <div className="bg-gray-100 h-[350px] lg:flex items-center w-full px-6 lg:px-20 justify-between">
+        <div className="bg-gray-100 py-8 lg:py-0 lg:h-[350px] lg:flex items-center w-full px-6 lg:px-20 justify-between">
           <div className=" w-full lg:w-2/3">
             <h2 className="text-6xl">Service Details</h2>
             <div className="text-sm breadcrumbs">
@@ -35,9 +43,10 @@ const ServiceDetails = () => {
           </div>
           <div className="">
             <img
-              className="h-72 overflow-hidden object-cover"
+              className="w-full lg:h-72 overflow-hidden object-cover"
               src={delivery}
               alt=""
+              data-aos="fade-left"
             />
           </div>
         </div>
@@ -59,7 +68,8 @@ const ServiceDetails = () => {
         </div>
       </div>
       <div>
-        <Review />
+        <Link to={`/review/${_id}`} />
+        <Review rating={rating} />
       </div>
     </>
   );

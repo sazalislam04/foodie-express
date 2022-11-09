@@ -7,7 +7,7 @@ import "../../styles/Service.css";
 const Service = ({ service }) => {
   const { _id, img, name, rating, price, description } = service;
   return (
-    <div className="card w-96 bg-base-100 shadow-xl rounded-md service">
+    <div className="card bg-base-100 shadow-xl rounded-md service">
       <figure>
         <PhotoProvider
           speed={() => 800}
@@ -18,7 +18,11 @@ const Service = ({ service }) => {
           }
         >
           <PhotoView src={img}>
-            <img src={img} className="h-72 p-5 shadow-xl rounded" alt="Shoes" />
+            <img
+              src={img}
+              className="md:h-72 lg:p-5 shadow-xl rounded"
+              alt="Shoes"
+            />
           </PhotoView>
         </PhotoProvider>
       </figure>

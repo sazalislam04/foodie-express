@@ -1,13 +1,15 @@
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import login from "../../../assets/img/Login.png";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
   const { userLogin, googleSignin } = useContext(AuthContext);
   const [error, setError] = useState("");
-
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -21,6 +23,24 @@ const Login = () => {
         form.reset();
         toast.success("Login Success");
         setError("");
+
+        const currentUser = {
+          email: user.email,
+        };
+
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            localStorage.setItem("foodie-token", data.token);
+          });
+
+        navigate(from, { replace: true });
       })
       .catch((error) => setError(error));
   };
@@ -28,8 +48,7 @@ const Login = () => {
   const handleGoogleLogin = () => {
     googleSignin()
       .then((result) => {
-        const user = result.user;
-        console.log(user);
+        navigate(from, { replace: true });
       })
       .catch((error) => setError(error));
   };
