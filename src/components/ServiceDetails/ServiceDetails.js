@@ -62,8 +62,8 @@ const ServiceDetails = () => {
         </div>
       </div>
       <div>
-        <Link to={`/review/${_id}`} />
-        <Review rating={rating} name={name} price={price} />
+        <Link to={`/reviews/${_id}`} />
+        <Review rating={rating} price={price} name={name} />
       </div>
     </>
   );

@@ -5,6 +5,7 @@ import Register from "../components/Auth/Register/Register";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import Home from "../components/Home/Home";
 import MyReviews from "../components/MyReviews/MyReviews";
+import Profile from "../components/Profile/Profile";
 import ServiceDetails from "../components/ServiceDetails/ServiceDetails";
 import Services from "../components/Services/Services";
 import Layout from "../Layout/Layout";
@@ -37,6 +38,14 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoutes>
+            <Profile />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/myreview",

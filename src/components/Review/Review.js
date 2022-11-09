@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
+
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import useSetTitle from "../../useSetTitle/useSetTitle";
 import PostReview from "./PostReview";
@@ -8,11 +9,12 @@ import ShowReview from "./ShowReview";
 
 const Review = ({ rating, name: serviceName, price }) => {
   const { user } = useContext(AuthContext);
-  const [serviceReview, setServiceReview] = useState([]);
   const [refresh, setRefresh] = useState(false);
-  useSetTitle("Review");
+  const [serviceReview, setServiceReview] = useState([]);
   const router = useParams();
   const { id } = router;
+
+  useSetTitle("Review");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -81,7 +83,7 @@ const Review = ({ rating, name: serviceName, price }) => {
       ) : (
         <>
           <div className="py-16 grid grid-cols-1 lg:grid-cols-2">
-            {serviceReview?.map((item) => (
+            {serviceReview.map((item) => (
               <ShowReview key={item._id} item={item} />
             ))}
           </div>

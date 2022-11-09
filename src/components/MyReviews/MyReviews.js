@@ -74,9 +74,10 @@ const MyReviews = () => {
           toast.success(data.message);
           const rest = myReviews.filter((review) => review._id !== id);
           const user = myReviews.find((review) => review._id === id);
-          const result = [...rest, user];
+          const result = [user, ...rest];
           setMyReviews(result);
           setRefresh(true);
+          form.reset();
         } else {
           toast.error(data.error);
         }
