@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useSetTitle from "../../useSetTitle/useSetTitle";
 import Service from "../Services/Service";
 import Banner from "./Banner/Banner";
 import Features from "./Features/Features";
@@ -7,6 +8,7 @@ import SectionHeading from "./SectionHeading/SectionHeading";
 import Testimonials from "./Testimonials/Testimonials";
 
 const Home = () => {
+  useSetTitle("Home");
   const [services, setServices] = useState([]);
   useEffect(() => {
     fetch("http://localhost:5000/home-services")

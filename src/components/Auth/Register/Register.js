@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import register from "../../../assets/img/register.png";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import useSetTitle from "../../../useSetTitle/useSetTitle";
 
 const Register = () => {
   const { createUser, userUpdateProfile, googleSignin } =
@@ -11,7 +12,7 @@ const Register = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
-
+  useSetTitle("Register");
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;

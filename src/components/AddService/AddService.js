@@ -1,10 +1,12 @@
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import useSetTitle from "../../useSetTitle/useSetTitle";
 
 const AddService = () => {
   const { user } = useContext(AuthContext);
   const [rating, setRating] = useState(0);
+  useSetTitle("Add Service");
 
   const handleSubmit = (e) => {
     e.preventDefault();

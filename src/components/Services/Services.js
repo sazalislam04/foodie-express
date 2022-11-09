@@ -2,10 +2,12 @@ import Lottie from "lottie-react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import animation from "../../assets/animation/animation.json";
+import useSetTitle from "../../useSetTitle/useSetTitle";
 import Service from "./Service";
 
 const Services = () => {
   const [services, setServices] = useState([]);
+  useSetTitle("Services");
 
   useEffect(() => {
     fetch("http://localhost:5000/services")

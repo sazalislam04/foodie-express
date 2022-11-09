@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import useSetTitle from "../../useSetTitle/useSetTitle";
 import PostReview from "./PostReview";
 import ShowReview from "./ShowReview";
 
@@ -9,7 +10,7 @@ const Review = ({ rating, name: serviceName, price }) => {
   const { user } = useContext(AuthContext);
   const [serviceReview, setServiceReview] = useState([]);
   const [refresh, setRefresh] = useState(false);
-
+  useSetTitle("Review");
   const router = useParams();
   const { id } = router;
 

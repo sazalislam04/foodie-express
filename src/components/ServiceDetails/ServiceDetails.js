@@ -2,9 +2,11 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
 import delivery from "../../assets/img/Delivery.png";
+import useSetTitle from "../../useSetTitle/useSetTitle";
 import Review from "../Review/Review";
 
 const ServiceDetails = () => {
+  useSetTitle("Service Details");
   const { _id, img, name, rating, price, description } = useLoaderData();
 
   return (

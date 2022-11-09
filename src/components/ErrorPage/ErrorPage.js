@@ -1,7 +1,9 @@
 import React from "react";
 import { Link, useRouteError } from "react-router-dom";
+import useSetTitle from "../../useSetTitle/useSetTitle";
 
 const ErrorPage = () => {
+  useSetTitle("Page Not Found");
   const error = useRouteError();
   return (
     <section className="flex items-center min-h-screen sm:p-16 dark:bg-gray-900 dark:text-gray-100">

@@ -3,13 +3,16 @@ import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import login from "../../../assets/img/Login.png";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import useSetTitle from "../../../useSetTitle/useSetTitle";
 
 const Login = () => {
   const { userLogin, googleSignin } = useContext(AuthContext);
   const [error, setError] = useState("");
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  useSetTitle("Login");
   const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;

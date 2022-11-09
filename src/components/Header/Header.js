@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import avatar from "../../assets/img/avatar-2.png";
+import logo from "../../assets/img/logo.png";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
@@ -63,8 +64,11 @@ const Header = () => {
             {navMenu}
           </ul>
         </div>
-        <Link to="/" className="text-yellow-500 font-semibold text-2xl">
-          Foodie
+        <Link
+          to="/"
+          className="flex items-center text-yellow-500 font-semibold text-2xl"
+        >
+          <img className="w-10 h-10 mr-1" src={logo} alt="" /> Foodie
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
