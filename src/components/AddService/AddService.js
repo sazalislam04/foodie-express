@@ -120,20 +120,24 @@ const AddService = () => {
                 required
               ></textarea>
             </div>
-            <div>
-              <select
-                onClick={(e) => setRating(e.target.value)}
-                className="btn btn-warning"
-                required
-              >
-                <option value="2">Rating 2</option>
-                <option value="3">Rating 3</option>
-                <option value="4">Rating 4</option>
-                <option value="5">Rating 5</option>
-              </select>
-            </div>
-            <div className="">
-              <button className="btn btn-warning">Added Services</button>
+            <div className="sm:flex gap-6">
+              <div>
+                <select
+                  onClick={(e) => setRating(e.target.value)}
+                  className="btn btn-warning mb-3 sm:mb-0"
+                  required
+                >
+                  <option value="2">Rating 2</option>
+                  <option value="3">Rating 3</option>
+                  <option value="4">Rating 4</option>
+                  <option value="5">Rating 5</option>
+                </select>
+              </div>
+              <div className="">
+                <button className="btn btn-warning sm:w-48">
+                  Added Services
+                </button>
+              </div>
             </div>
           </form>
         </fieldset>

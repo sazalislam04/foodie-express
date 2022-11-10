@@ -46,16 +46,6 @@ const PostReview = ({ handleSubmit }) => {
                   required
                 />
               </div>
-              {/* <div className="col-span-full">
-                <input
-                  type="text"
-                  name="photoURL"
-                  defaultValue={user?.photoURL}
-                  placeholder="photoUrl"
-                  className="w-full p-3 rounded-xl focus:outline-yellow-400 border border-yellow-200 resize-none text-gray-900"
-                  required
-                />
-              </div> */}
               <div className="">
                 <button className="btn btn-warning">Add Review</button>
               </div>

@@ -77,7 +77,7 @@ const Review = ({ rating, name: serviceName, price }) => {
       {serviceReview.length === 0 ? (
         <>
           {user?.email && (
-            <p className="text-center py-16 text-md">
+            <p className="text-center py-16 px-6 text-md">
               This Service has not reviewed yet! you can wish that can write a
               review
             </p>
