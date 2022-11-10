@@ -12,7 +12,7 @@ const Blog = () => {
             <Link
               rel="noopener noreferrer"
               to=""
-              className="px-2 py-1 font-bold rounded dark:bg-violet-400 dark:text-gray-900"
+              className="px-2 py-1 font-bold rounded dark:bg-yellow-400 dark:text-gray-900"
             >
               SQL and NoSQL
             </Link>
@@ -40,7 +40,7 @@ const Blog = () => {
             <Link
               rel="noopener noreferrer"
               to=""
-              className="hover:underline dark:text-violet-400"
+              className="hover:underline dark:text-yellow-400"
             >
               Read more
             </Link>
@@ -69,7 +69,7 @@ const Blog = () => {
             <Link
               rel="noopener noreferrer"
               to=""
-              className="px-2 py-1 font-bold rounded dark:bg-violet-400 dark:text-gray-900"
+              className="px-2 py-1 font-bold rounded dark:bg-yellow-400 dark:text-gray-900"
             >
               JWT
             </Link>
@@ -95,7 +95,7 @@ const Blog = () => {
             <Link
               rel="noopener noreferrer"
               to=""
-              className="hover:underline dark:text-violet-400"
+              className="hover:underline dark:text-yellow-400"
             >
               Read more
             </Link>
@@ -124,7 +124,7 @@ const Blog = () => {
             <Link
               rel="noopener noreferrer"
               to=""
-              className="px-2 py-1 font-bold rounded dark:bg-violet-400 dark:text-gray-900"
+              className="px-2 py-1 font-bold rounded dark:bg-yellow-400 dark:text-gray-900"
             >
               javascript and NodeJS
             </Link>
@@ -150,7 +150,7 @@ const Blog = () => {
             <Link
               rel="noopener noreferrer"
               to=""
-              className="hover:underline dark:text-violet-400"
+              className="hover:underline dark:text-yellow-400"
             >
               Read more
             </Link>
@@ -179,7 +179,7 @@ const Blog = () => {
             <Link
               rel="noopener noreferrer"
               to=""
-              className="px-2 py-1 font-bold rounded dark:bg-violet-400 dark:text-gray-900"
+              className="px-2 py-1 font-bold rounded dark:bg-yellow-400 dark:text-gray-900"
             >
               NodeJS
             </Link>
@@ -206,7 +206,7 @@ const Blog = () => {
             <Link
               rel="noopener noreferrer"
               to=""
-              className="hover:underline dark:text-violet-400"
+              className="hover:underline dark:text-yellow-400"
             >
               Read more
             </Link>
