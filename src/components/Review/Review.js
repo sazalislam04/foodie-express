@@ -58,9 +58,9 @@ const Review = ({ rating, name: serviceName, price }) => {
         }
       });
   };
-  console.log(serviceReview);
+
   useEffect(() => {
-    fetch(`https://foodie-express-server.vercel.app/reviews?id=${id}`)
+    fetch(`https://foodie-express-server.vercel.app/currentReview?id=${id}`)
       .then((res) => res.json())
       .then((data) => {
         setServiceReview(data);
@@ -101,7 +101,7 @@ const Review = ({ rating, name: serviceName, price }) => {
           ) : (
             <>
               <div className="py-16 grid grid-cols-1 lg:grid-cols-2">
-                {serviceReview.map((item) => (
+                {serviceReview?.map((item) => (
                   <ShowReview key={item._id} item={item} />
                 ))}
               </div>

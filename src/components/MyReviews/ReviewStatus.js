@@ -16,8 +16,6 @@ const ReviewStatus = ({ myRev, handleDelete, handleUpdate }) => {
     timestamp,
   } = myRev;
 
-  console.log(myRev);
-
   return (
     <>
       <div className="container flex flex-col shadow-md gap-8 p-6 mx-auto divide-y rounded-md divide-gray-700  text-gray-800">
