@@ -11,11 +11,14 @@ const MyReviews = () => {
   useSetTitle("My Reviews");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
-      headers: {
-        authorization: `Bearar ${localStorage.getItem("foodie-token")}`,
-      },
-    })
+    fetch(
+      `https://foodie-express-server.vercel.app/reviews?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearar ${localStorage.getItem("foodie-token")}`,
+        },
+      }
+    )
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
           return userLogOut();
@@ -32,7 +35,7 @@ const MyReviews = () => {
       `Are you sure you want to cancel this review id: ${id}`
     );
     if (proceed) {
-      fetch(`http://localhost:5000/reviews/${id}`, {
+      fetch(`https://foodie-express-server.vercel.app/reviews/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -61,7 +64,7 @@ const MyReviews = () => {
       review,
     };
 
-    fetch(`http://localhost:5000/reviews/${id}`, {
+    fetch(`https://foodie-express-server.vercel.app/reviews/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

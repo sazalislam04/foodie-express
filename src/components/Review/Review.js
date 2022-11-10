@@ -34,13 +34,16 @@ const Review = ({ rating, name: serviceName, price }) => {
       photoURL: user.photoURL,
     };
 
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(reviews),
-    })
+    fetch(
+      `https://foodie-express-server.vercel.app/reviews?email=${user?.email}`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(reviews),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
@@ -55,7 +58,7 @@ const Review = ({ rating, name: serviceName, price }) => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?id=${id}`)
+    fetch(`https://foodie-express-server.vercel.app/reviews?id=${id}`)
       .then((res) => res.json())
       .then((data) => {
         setServiceReview(data);

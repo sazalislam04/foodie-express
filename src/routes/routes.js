@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import AddService from "../components/AddService/AddService";
 import Login from "../components/Auth/Login/Login";
 import Register from "../components/Auth/Register/Register";
+import Blog from "../components/Blog/Blog";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import Home from "../components/Home/Home";
 import MyReviews from "../components/MyReviews/MyReviews";
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "/blog",
+        element: <Blog />,
+      },
+      {
         path: "/services",
         element: <Services />,
       },
@@ -29,7 +34,9 @@ export const router = createBrowserRouter([
         path: "/service/:id",
         element: <ServiceDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(
+            `https://foodie-express-server.vercel.app/services/${params.id}`
+          ),
       },
       {
         path: "/login",
