@@ -69,7 +69,7 @@ const Blog = () => {
       <div className="dark:bg-gray-800 dark:text-gray-100 py-2">
         <div
           className="container max-w-4xl px-10 py-6 mx-auto rounded-lg shadow-sm dark:bg-gray-900"
-          data-aos="fade-left"
+          data-aos="fade-right"
         >
           <div className="flex items-center justify-between">
             <Link
@@ -185,7 +185,7 @@ const Blog = () => {
       <div className="dark:bg-gray-800 dark:text-gray-100 pt-2 pb-10">
         <div
           className="container max-w-4xl px-10 py-6 mx-auto rounded-lg shadow-sm dark:bg-gray-900"
-          data-aos="fade-left"
+          data-aos="fade-right"
         >
           <div className="flex items-center justify-between">
             <Link
