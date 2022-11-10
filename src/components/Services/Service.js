@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import "../../styles/Service.css";
 const Service = ({ service }) => {
   const { _id, img, name, rating, price, description } = service;
+
   return (
     <div className="card bg-base-100 shadow-xl rounded-md service">
       <figure>

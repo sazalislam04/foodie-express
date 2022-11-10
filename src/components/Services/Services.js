@@ -1,13 +1,14 @@
 import Lottie from "lottie-react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 import animation from "../../assets/animation/animation.json";
 import useSetTitle from "../../useSetTitle/useSetTitle";
 import Service from "./Service";
-
 const Services = () => {
   const [services, setServices] = useState([]);
   useSetTitle("Services");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetch("https://foodie-express-server.vercel.app/services")
@@ -16,6 +17,13 @@ const Services = () => {
         setServices(data);
       })
       .catch((error) => console.log(error));
+  }, []);
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   }, []);
 
   return (
@@ -44,11 +52,17 @@ const Services = () => {
           />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 py-16 lg:px-20">
-        {services.map((service) => (
-          <Service key={service._id} service={service} />
-        ))}
-      </div>
+      {loading ? (
+        <span className="w-full flex items-center justify-center ">
+          <ClipLoader size={70} color="#facc15" />
+        </span>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 py-16 lg:px-20">
+          {services.map((service) => (
+            <Service key={service._id} service={service} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
-
+import ClipLoader from "react-spinners/ClipLoader";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import useSetTitle from "../../useSetTitle/useSetTitle";
 import PostReview from "./PostReview";
@@ -11,6 +11,7 @@ const Review = ({ rating, name: serviceName, price }) => {
   const { user } = useContext(AuthContext);
   const [refresh, setRefresh] = useState(false);
   const [serviceReview, setServiceReview] = useState([]);
+  const [loading, setLoading] = useState(false);
   const router = useParams();
   const { id } = router;
 
@@ -66,30 +67,45 @@ const Review = ({ rating, name: serviceName, price }) => {
       });
   }, [id, refresh]);
 
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  }, []);
+
   return (
     <>
-      <div className="text-center pt-16 mb-10 heading">
-        <h2 className="text-5xl capitalize">reviews</h2>
-      </div>
-      <div>
-        <PostReview handleSubmit={handleSubmit} />
-      </div>
-      {serviceReview.length === 0 ? (
-        <>
-          {user?.email && (
-            <p className="text-center py-16 px-6 text-md">
-              This Service has not reviewed yet! you can wish that can write a
-              review
-            </p>
-          )}
-        </>
+      {loading ? (
+        <span className="w-full flex items-center justify-center ">
+          <ClipLoader size={70} color="#facc15" />
+        </span>
       ) : (
         <>
-          <div className="py-16 grid grid-cols-1 lg:grid-cols-2">
-            {serviceReview.map((item) => (
-              <ShowReview key={item._id} item={item} />
-            ))}
+          <div className="text-center pt-16 mb-10 heading">
+            <h2 className="text-5xl capitalize">reviews</h2>
           </div>
+          <div>
+            <PostReview handleSubmit={handleSubmit} />
+          </div>
+          {serviceReview.length === 0 ? (
+            <>
+              {user?.email && (
+                <p className="text-center py-16 px-6 text-md">
+                  This Service has not reviewed yet! you can wish that can write
+                  a review
+                </p>
+              )}
+            </>
+          ) : (
+            <>
+              <div className="py-16 grid grid-cols-1 lg:grid-cols-2">
+                {serviceReview.map((item) => (
+                  <ShowReview key={item._id} item={item} />
+                ))}
+              </div>
+            </>
+          )}
         </>
       )}
     </>

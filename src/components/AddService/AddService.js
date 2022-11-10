@@ -42,7 +42,10 @@ const AddService = () => {
 
   return (
     <div className="p-6 py-16 bg-slate-50 text-gray-50">
-      <div className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
+      <div
+        className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid"
+        data-aos="zoom-in"
+      >
         <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-900">
           <div className="space-y-2 col-span-full lg:col-span-1">
             <p className="font-medium text-3xl">
