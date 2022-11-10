@@ -1,7 +1,7 @@
 import React from "react";
 import avatar from "../../assets/img/avatar.png";
 const ShowReview = ({ item }) => {
-  const { email, name, rating, review, photoURL } = item;
+  const { email, name, rating, review, photoURL, timestamp } = item;
 
   return (
     <>
@@ -25,7 +25,8 @@ const ShowReview = ({ item }) => {
             </div>
             <div>
               <h4 className="font-bold text-lg capitalize">{name}</h4>
-              <span className="text-xs text-gray-800">{email}</span>
+              <span className="text-xs text-gray-800">{email}</span> <br />
+              <span className="text-xs text-gray-800">{timestamp}</span>
             </div>
           </div>
           <div className="flex items-center space-x-2 text-yellow-500">

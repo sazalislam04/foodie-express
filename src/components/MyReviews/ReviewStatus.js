@@ -4,8 +4,19 @@ import avatar from "../../assets/img/avatar.png";
 
 const ReviewStatus = ({ myRev, handleDelete, handleUpdate }) => {
   const [toggle, setToggle] = useState(false);
-  const { _id, review, name, email, serviceName, photoURL, price, rating } =
-    myRev;
+  const {
+    _id,
+    review,
+    name,
+    email,
+    serviceName,
+    photoURL,
+    price,
+    rating,
+    timestamp,
+  } = myRev;
+
+  console.log(myRev);
 
   return (
     <>
@@ -31,7 +42,8 @@ const ReviewStatus = ({ myRev, handleDelete, handleUpdate }) => {
               <div className="lg:flex py-2 lg:py-0 flex-cols items-center gap-2 lg:gap-20">
                 <div>
                   <h4 className="font-bold text-xl">{name}</h4>
-                  <span className="text-sm text-gray-700">{email}</span>
+                  <span className="text-sm text-gray-700">{email}</span> <br />
+                  <span className="text-sm text-gray-700">{timestamp}</span>
                 </div>
                 <div>
                   <h2 className="text-2xl">{serviceName}</h2>

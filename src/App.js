@@ -33,8 +33,8 @@ function App() {
           <Toaster
             toastOptions={{
               style: {
-                background: "#222",
-                color: "#fff",
+                background: "#fff",
+                color: "#222",
               },
             }}
           />

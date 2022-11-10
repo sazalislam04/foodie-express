@@ -33,6 +33,7 @@ const Review = ({ rating, name: serviceName, price }) => {
       serviceName,
       price,
       photoURL: user.photoURL,
+      timestamp: new Date(),
     };
 
     fetch(
@@ -57,7 +58,7 @@ const Review = ({ rating, name: serviceName, price }) => {
         }
       });
   };
-
+  console.log(serviceReview);
   useEffect(() => {
     fetch(`https://foodie-express-server.vercel.app/reviews?id=${id}`)
       .then((res) => res.json())
@@ -71,7 +72,7 @@ const Review = ({ rating, name: serviceName, price }) => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 1500);
+    }, 1000);
   }, []);
 
   return (
