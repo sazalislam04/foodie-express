@@ -28,10 +28,6 @@ const AddService = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.insertedId) {
-          toast.error("already added service");
-          return;
-        }
         if (data.acknowledged) {
           toast.success("services added success");
         } else {
