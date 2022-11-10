@@ -25,7 +25,7 @@ function App() {
     <div className="">
       {loading ? (
         <span className="h-screen w-full flex items-center justify-center bg-gray-800">
-          <PropagateLoader size={26} color="#36d7b7" />
+          <PropagateLoader size={26} color="#facc15" />
         </span>
       ) : (
         <>

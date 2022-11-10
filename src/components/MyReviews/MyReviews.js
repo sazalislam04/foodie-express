@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import ClipLoader from "react-spinners/ClipLoader";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import useSetTitle from "../../useSetTitle/useSetTitle";
 import ReviewStatus from "./ReviewStatus";
@@ -8,6 +9,7 @@ const MyReviews = () => {
   const { user, userLogOut } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState([]);
   const [refresh, setRefresh] = useState(false);
+  const [loading, setLoading] = useState(false);
   useSetTitle("My Reviews");
 
   useEffect(() => {
@@ -79,32 +81,46 @@ const MyReviews = () => {
           const user = myReviews.find((review) => review._id === id);
           const result = [user, ...rest];
           setMyReviews(result);
-          setRefresh(true);
           form.reset();
+          setRefresh(true);
         } else {
           toast.error(data.error);
         }
       });
   };
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  }, []);
 
   return (
     <>
-      {myReviews.length === 0 ? (
-        <div className="flex min-h-screen justify-center text-5xl bg-gray-900 text-white items-center ">
-          No reviews were added
-        </div>
+      {loading ? (
+        <span className="h-screen w-full flex items-center justify-center ">
+          <ClipLoader size={70} color="#facc15" />
+        </span>
       ) : (
         <>
-          <div className="overflow-x-auto w-full px-6 bg-slate-50 lg:px-20">
-            {myReviews.map((myRev) => (
-              <ReviewStatus
-                key={myRev._id}
-                myRev={myRev}
-                handleDelete={handleDelete}
-                handleUpdate={handleUpdate}
-              />
-            ))}
-          </div>
+          {!myReviews.length ? (
+            <div className="flex min-h-screen px-6 justify-center text-5xl bg-gray-100 text-gray-900 items-center ">
+              No reviews were added
+            </div>
+          ) : (
+            <>
+              <div className="overflow-x-auto w-full px-6 bg-slate-50 lg:px-20">
+                {myReviews.map((myRev) => (
+                  <ReviewStatus
+                    key={myRev._id}
+                    myRev={myRev}
+                    handleDelete={handleDelete}
+                    handleUpdate={handleUpdate}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </>
       )}
     </>
